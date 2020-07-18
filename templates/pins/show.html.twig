@@ -10,6 +10,7 @@
 
 <p>{{pin.description}}</p>
 
-<p><a href="{{ path('pins_home') }}"> Back </a></p>
+<a href="{{ path('pins_edit', {'id':pin.id}) }}"> Edit </a>|
+<a href="{{ path('pins_home') }}"> Back </a>
 
 {% endblock %}
