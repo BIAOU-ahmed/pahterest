@@ -35,6 +35,36 @@ class PinsController extends AbstractController
         return $this->render('pins/show.html.twig',compact('pin'));
     }
 
+
+    /**
+     * @Route("/pin/create", name="pins_create", methods={"GET", "POST"})
+     */
+    public function create(Request $request, EntityManagerInterface $em): Response
+    {
+        $pin = new Pin;
+
+       $form = $this->createForm(PinType::class, $pin);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+
+           
+            $em->persist($pin);
+            $em->flush();
+
+            return $this->redirectToRoute('pins_show', ['id' => $pin->getId()]);
+
+        }
+
+        return $this->render('pins/create.html.twig',[
+            'form'  => $form->createview()
+        ]); 
+    }
+
+
+
+
     /**
      * @Route("/pin/{id<[0-9]+>}/edit", name="pins_edit", methods={"GET", "PUT"})
      */
@@ -65,30 +95,14 @@ class PinsController extends AbstractController
 
 
 
-    /**
-     * @Route("/pin/create", name="pins_create", methods={"GET", "POST"})
+   /**
+     * @Route("/pin/{id<[0-9]+>}/delete", name="pins_delete", methods={"DELETE",})
      */
-    public function create(Request $request, EntityManagerInterface $em): Response
+    public function delete(Pin $pin, EntityManagerInterface $em):Response
     {
-        $pin = new Pin;
 
-       $form = $this->createForm(PinType::class, $pin);
-
-        $form->handleRequest($request);
-
-        if($form->isSubmitted() && $form->isValid()){
-
-           
-            $em->persist($pin);
-            $em->flush();
-
-            return $this->redirectToRoute('pins_show', ['id' => $pin->getId()]);
-
-        }
-
-        return $this->render('pins/create.html.twig',[
-            'form'  => $form->createview()
-        ]); 
+        $em->remove($pin);
+        $em->flush();
+        return $this->redirectToRoute('pins_home');
     }
-
 }
