@@ -11,11 +11,12 @@
 <p>{{pin.description}}</p>
 
 <a href="{{ path('pins_edit', {'id':pin.id}) }}"> Edit </a>|
-<a href="https://google.com" onclick="event.preventDefault(); confirm('Are you sure!') && 
+<a href="https://google.com" onclick="event.preventDefault(); confirm('Are you sure ?') && 
 document.getElementById('js-pin-delete-form').submit();"> Delete </a>|
 <a href="{{ path('pins_home') }}"> Back </a>
 
 <form id="js-pin-delete-form" action="{{ path('pins_delete', {'id':pin.id}) }}" method="post" style="dysplay:none;">
+	<input type="hidden" name="csrf_token" value="{{ csrf_token('pins_deletion_' ~ pin.id)}}">
 	<input type="hidden" name="_method" value="DELETE">
 </form>
 
