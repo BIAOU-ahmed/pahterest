@@ -53,6 +53,7 @@ class PinsController extends AbstractController
             $em->persist($pin);
             $em->flush();
 
+            $this->addFlash('success', 'Pin successfully created!');
             return $this->redirectToRoute('pins_show', ['id' => $pin->getId()]);
 
         }
@@ -83,6 +84,7 @@ class PinsController extends AbstractController
            
             $em->flush();
 
+            $this->addFlash('success', 'Pin successfully edited!');
             return $this->redirectToRoute('pins_home');
 
         }
@@ -104,6 +106,9 @@ class PinsController extends AbstractController
 
             $em->remove($pin);
             $em->flush();
+
+
+            $this->addFlash('info', 'Pin successfully deleted!');
            
         }
 
