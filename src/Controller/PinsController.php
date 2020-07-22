@@ -54,7 +54,7 @@ class PinsController extends AbstractController
             $em->flush();
 
             $this->addFlash('success', 'Pin successfully created!');
-            return $this->redirectToRoute('pins_show', ['id' => $pin->getId()]);
+            return $this->redirectToRoute('pins_home');
 
         }
 
