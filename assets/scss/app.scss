@@ -14,19 +14,33 @@ body {
     border: none;
     border-radius: 0;
 
+    &.alert-success{
+
+        background-color: green;
+    }
+
+    &.alert-error{
+
+        background-color: red;
+    }
+
+    &.alert-info{
+
+        background-color: blue;
+    }
 }
 
-.alert-success{
+.vich-image {
+    .form-check {
+        @extend .mt-3;
+    }
+    img {
 
-    background-color: green;
+        @extend .mb-2;
+        @extend .rounded;
+        @extend .shadow;
+        @extend .img-thumbnail;
+    }
+
 }
 
-.alert-error{
-
-    background-color: red;
-}
-
-.alert-info{
-
-    background-color: blue;
-}
