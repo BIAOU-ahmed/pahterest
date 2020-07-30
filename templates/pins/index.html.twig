@@ -17,7 +17,7 @@
 					
 				<article class="pin bg-hite rounded shadow">
 
-					<div class="w-100 overflow-hidden">
+					<div class="w-100 rounded-top overflow-hidden">
 						
 					<a href="{{ path('pins_show', {'id':pin.id}) }}">
 					<img src="{{ (pin.imageName ? vich_uploader_asset(pin) : asset('build/images/placeholder.jpg')) | imagine_filter('square_thumbnail_medium') }}" alt="{{ pin.title }}" class="w-100 rounded-top" />
